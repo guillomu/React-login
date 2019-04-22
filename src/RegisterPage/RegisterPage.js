@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
 import { Input } from '../_components';
-import "./register.css";
+import "./style.css";
 
 // Je déclare mon composant
 class RegisterPage extends React.Component {

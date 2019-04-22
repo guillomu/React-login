@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
+import { Input } from '../_components';
 import { userService } from "../_services";
-import "./login.css";
+import "./style.css";
+
+
 
 // Je déclare mon composant
 class LoginPage extends React.Component {
@@ -98,59 +100,54 @@ class LoginPage extends React.Component {
             <div className="wrapper wrapper--w680">
               <div className="card card-4">
                 <div className="card-body">
-                <h2>Login</h2>
-                {message}
-                {/* {
-          this.state.submitted && this.state.username && this.state.password && 
-          <p>Username: {this.state.username} Password:{this.state.password}</p>
-        }*/ }
-
-                {
-                  this.state.submitted && !this.state.username &&
-                  <p className="alert alert-danger" role="alert">Username is required</p>
-                }
-
-                {
-                  this.state.submitted && !this.state.password &&
-                  <p className="alert alert-danger" role="alert">Password is required</p>
-                }
-                <form name="form" onSubmit={this.handleSubmit}>
-                  <div className="form-row">
-                    <div className="form-group col-md-6">
-                      <label htmlFor="username">Username</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="username"
-                        //value={username}
-                        onChange={this.handleChange}
-                      />
+                  <h2>Login</h2>
+                  {message}
+                  <form name="form" onSubmit={this.handleSubmit}>
+                    <div className="form-row">
+                      <div className="form-group col-md-6">
+                        <Input
+                          label={"Username"}
+                          type={"text"}
+                          name={"username"}
+                          value={this.state.username}
+                          required={"required"}
+                          submitted={this.state.submitted}
+                          handleChange={this.handleChange}
+                        />
+                      </div>
+                      <div className="form-group col-md-6">
+                        <Input
+                          label={"Password"}
+                          type={"password"}
+                          name={"password"}
+                          value={this.state.password}
+                          required={"required"}
+                          submitted={this.state.submitted}
+                          handleChange={this.handleChange}
+                        />
+                      </div>
                     </div>
-                    <div className="form-group col-md-6">
-
-                      <label htmlFor="password">Password</label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        name="password"
-                        //value={password}
-                        onChange={this.handleChange}
-                      />
+                    <div className="form-row">
+                      <div className="form-group mr-5">
+                        {
+                          !this.state.loading &&
+                          <button className="btn btn-primary">Sign up</button>
+                        }
+                        {
+                          this.state.loading &&
+                          <button className="btn btn-primary" type="button" disabled>
+                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                            </button>
+                        }
+                      </div>
+                      <Link to="register"><button className="btn btn-primary">Register</button></Link>
                     </div>
-                  </div>
-                  <div className="form-row">
-                  <div className="form-group mr-5">
-                    <button className="btn btn-primary">Sign In</button>
-                  </div>
-                  <Link to="register"><button className="btn btn-primary">Register</button></Link>
-                  </div>
-                </form>
-                
-                {this.state.loading && <p>Loading...</p>}
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     );
